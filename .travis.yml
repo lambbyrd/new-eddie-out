@@ -1,0 +1,17 @@
+language: node_js
+node_js: node
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - mongodb-3.2-precise
+    packages:
+    - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: mHylTJ3ZuczPeQpTE1xN6OBhMHyHX8CYgIkvsRvlxliJtwyzuNnAtVFPqMXci6JGnlpER3fPrfqE54qlWve8bxwq7ZYDBx9dd6BIB7E7HaqpzKC1u8udJjsunTpSP7IvgUkWpic3X0IIkJGTGBCxjAiaGsDDK0XugBkyYBVEZG1chlmvy0FcTes3dRgOIobsglGkIpR8VNIJ9ycP//htXW/mxEmzrKEzeOaTZHVgXoeGUnRfJH9cJuJ5H7uxK4AvRNW1oBRUkS1y2cTk2RluwVJp93Hu64lGvoBQ4nIPSMMlGqM/v9Tem/4BHQ9x8fFCgYvGdO4s0MBVp5aeLky/o1d5BKig7XqKHz+gORQq2Az0zFyz6LHBkjDLXrkFE/x3oeHcbXuVO1OsLtPI+9DkJ58pt2JzVffJJfg1uKpPDdyBilOzXyXVoSYE75m4pwnfH+pb1DJv4NYHm6SHdkrbaxMkI+teNbGmuQ6s/ge/KPs2H1SrQxB5ksdoVaXB1Tr0sj2wyi7jFHmnewX3IkYxb1NO37mqgggwHhm/ksySaQBoljvXjC3eznrfrI4x1JwMGQ+r+m9jctMIJBcBAOFn73SqX4wzUPzFE8dmOYouPh8jzGghAM/6ffMdAB+EYSvKjlsj4t1Ec9liYNBXhXerOlZkZCAhBCHB1eRoPZitM1c=
+  app: peaceful-everglades-75146
+  on:
+    repo: codepressd/new-eddie-out
