@@ -1,0 +1,34 @@
+.navbar-brand{
+    padding: 15px 0 0 40px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.4em;
+}
+.navbar .navbar-inverse{
+  color: #56587f;
+}
+
+.profile{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile > img{
+  max-width: 100px;
+  border-radius: 50%;
+}
+.nav-center{
+  text-align: center;
+}
+.nav-text{
+  font-family: 'Noto+Serif', sans-serif;
+  font-size: 1.5em;
+}
+.nav-icon{
+  font-size: 4em;
+}
+
+.sidebar{
+  overflow: hidden;
+  
+}
+}
