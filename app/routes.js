@@ -12,11 +12,22 @@ module.exports = router;
 //homepage route
 router.get('/', mainController.displayHome);
 
+//sign up route
 router.get('/signup', mainController.signUp);
 
-//newuser
+//login route
+router.get('/login', mainController.logIn);
+
+//chat route
+router.get('/chat', mainController.chatInit);
+
+//newuser signup
 
 router.post('/newuser', mainController.addNewUser);
+
+//User login
+
+
 
 //Browse rivers route
 //router.get('/browse',  )
