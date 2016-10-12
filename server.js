@@ -4,6 +4,12 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
+//socket chat
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+
 
 var expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
@@ -12,6 +18,14 @@ var session = require('express-session');
 
 
 var configDB = require('./config/database.js');
+
+//var chatServer = http.Server(app);
+//var io = socket_io(chatServer);
+
+//Code for socket io chat room
+
+//var generalRoom = io.of('/general');
+
 
 //static assets
 app.use(express.static('public'));
@@ -68,9 +82,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 })); // session secret
+app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
 //set routes
 
