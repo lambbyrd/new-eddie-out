@@ -1,7 +1,8 @@
 //new router
 const express = require('express'),
   router = express.Router(),
-  mainController = require('./controllers/main.controller');
+  mainController = require('./controllers/main.controller'),
+  locationController = require('./controllers/locations.controller');
 
 //export router
 
@@ -50,8 +51,11 @@ function isLoggedIn(req, res, next) {
 router.get('/logout', mainController.userLogout);
 
 //Browse rivers route
-//router.get('/browse',  )
 
-//chat function route
+router.get('/browse', mainController.browseRivers);
 
-//router.get('/chat', )
+//get USGS Data
+
+router.get('/usgs', locationController.getUsgsData);
+router.get('/locations', locationController.returnLocations);
+

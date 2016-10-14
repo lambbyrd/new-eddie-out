@@ -1,39 +1,60 @@
 var passport = require('passport');
 var flash = require('connect-flash');
+
 module.exports = {
   
   //displays homepage content
   
   displayHome : (req,res) => {
- 
-    res.render('pages/home');
-
+    var locals = { 
+      user: req.user,
+    }
+    res.render('pages/home', locals)
   }, 
   
   signUp: (req, res) => {
-    
-    res.render('pages/signup', {message: req.flash('error')});
+    var locals = { 
+      user: req.user,
+      message: req.flash('error')
+    }
+    res.render('pages/signup', locals)
   },
   
   logIn : (req, res) => {
-    res.render('pages/login', {message: req.flash('error')});
-
+    var locals = { 
+      user: req.user,
+      message: req.flash('error')
+    }
+    res.render('pages/login', locals)
   },
   
   chatInit: (req, res) => {
-    res.render('pages/chat');
+    var locals = { 
+      user: req.user,
+    }
+    res.render('pages/chat', locals);
   },
 
   
   profileInit: (req, res) => {
+    var locals = { 
+      user: req.user
+    }
+    console.log('locals:', locals)
+    res.render('pages/profile', locals)
+  },
   
-    
-    res.render('pages/profile', {
-      user : req.user
-    });
+  browseRivers: (req, res) =>{
+    var locals = { 
+      user: req.user,
+    }
+    res.render('pages/browse', locals);
   },
   
   userLogout : (req, res) => {
+    var locals = { 
+      user: req.user,
+    }
     req.logout();
     res.redirect('/');
   },

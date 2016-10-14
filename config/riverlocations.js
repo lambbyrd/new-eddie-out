@@ -1,51 +1,26 @@
-var index = null;
-
-var gMap = {
-
-	markers: [],
-
-    map: null,
-
-    mapArea: $('#map-area')[0],
-
-    mapOptions: {
-        zoom: 5,
-        center: {
-            lat: 39.09024,
-            lng: -92.712891
-        }
-    },
-
-    init: function() {
-
-        this.map = new google.maps.Map(this.mapArea, this.mapOptions);
-    },
-
-
-    addRiverTag: function(lat, lng, name, flow) {
-        //var image = './img/raft-icon.png';
-
-        var latLng = new google.maps.LatLng(lat, lng);
-
-        var marker = new google.maps.Marker({
-            position: latLng,
-            title: name,
-            icon: image
-        });
-
-        marker.setMap(this.map);
-        gMap.markers.push(marker);
-
-        marker.addListener('click', function(){
-        	var index = gMap.markers.indexOf(this);
-        	$('.lightbox').addClass('showLightbox');
-        	gCharts.doDrawAreaChart(usgs.riverLocations[index]);
-        	//console.log('click works', index);
-        })
-    },
-}
-
 /*Get USGS Data*/
+
+var unirest = require('unirest');
+var express = require('express');
+var events = require('events');
+
+var Location = require('../app/models/locations');
+
+var getFromUSGS= function() {
+    var emitter = new events.EventEmitter();
+    unirest.get('http://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=ca&parameterCd=00060&siteType=ST&altMin=500')
+           .end(function(response) {
+                if (response.ok) {
+                    emitter.emit('end', response.body);
+                }
+                else {
+                    emitter.emit('error', response.code);
+                }
+            });
+    return emitter;
+};
+
+
 var usgs = {
 
     riverLocations: [],
@@ -93,81 +68,3 @@ var usgs = {
         	console.log(usgs.riverLocations);
     }
 }
-
-/*Create Charts*/
-//makes charts responsive
-/*$(window).on("throttledresize", function (event) {
-    gCharts.drawAreaChart();
-    gCharts.drawGauge();
-});*/
-
-var gCharts = {
-
-    init: function(site) {
-        google.charts.load('current', { 'packages': ['corechart','gauge'] });
-        
-        //google.charts.setOnLoadCallback(gCharts.drawGauge);
-    },
-
-    doDrawAreaChart: function(site){
-    	google.charts.setOnLoadCallback(drawAreaChart(site));
-    	function drawAreaChart(site){
-
-    	var data = google.visualization.arrayToDataTable([
-          ['Date', 'Flow'],
-          [site.flow[0][0],  site.flow[0][1]],
-          [site.flow[1][0],  site.flow[1][1]],
-          [site.flow[2][0],  site.flow[2][1]]
-        ]);
-
-        var options = {
-          title: site.name,
-          backgroundColor:'#EAEAEA', 
-          hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-
-        var chart = new google.visualization.AreaChart($('.chart')[0]);
-        chart.draw(data, options);
-      }
-    },
-
-    drawGauge : function(){
-    	var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['River CFS', 200]
-        ]);
-
-        var options = {
-          width: '100%', height: '100%',
-          redFrom: 90, redTo: 100,
-          yellowFrom:75, yellowTo: 90,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge($('.gauge')[0]);
-
-        chart.draw(data, options);
-
-    }
-
-}
-
-
-$(function() {
-
-    //usgs.getData();
-    
-    $('#close').on('click', function(){
-    	$('.lightbox').removeClass('showLightbox');
-    	index = null;
-    });
-
-    var promise = usgs.getData();
-
-    promise.done(function () {
-    	gCharts.init(usgs.riverLocations[0]);
-        // usgs.riverLocations.forEach(function (obj) {
-        //     gMap.addTag(obj.lat, obj.lng, obj.name);
-        });
-    });
