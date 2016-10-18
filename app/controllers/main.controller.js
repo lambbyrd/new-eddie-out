@@ -1,6 +1,8 @@
 var passport = require('passport');
 var flash = require('connect-flash');
 
+var User = require('../models/user-model');
+
 module.exports = {
   
   //displays homepage content
@@ -40,7 +42,6 @@ module.exports = {
     var locals = { 
       user: req.user
     }
-    console.log('locals:', locals)
     res.render('pages/profile', locals)
   },
   
@@ -58,6 +59,32 @@ module.exports = {
     req.logout();
     res.redirect('/');
   },
+  
+  sendToFavs : (req, res) => {
+	    var locationId = req.params.site;
+	    
+      User.findOneAndUpdate({'_id': req.user._id},{$push: {'favorites': locationId}}, function(err, user){
+        if(err){
+          throw err;
+        }
+        res.send(locationId);
+      });
+      
+	},
+	
+	deleteFavs : (req, res) => {
+	  
+	  var siteCode = req.params.site;
+	  
+	  User.findOneAndUpdate({'_id': req.user._id},{$pull: {'favorites': siteCode}}, function(err, user){
+	    if(err){
+	      throw err
+	    }
+	    
+	    res.send({'message' : 'Favorite Removed'});
+	  });
+	  
+	},
   
   addNewUser: passport.authenticate('local-signup', {
       successRedirect : '/profile', // redirect to the secure profile section

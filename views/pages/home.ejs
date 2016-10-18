@@ -2,6 +2,65 @@
     <div id="map-area">
       
     </div>
-
-<script src ="js/gMaps.js"></script>
+    
+        <div class="lightbox">
+            <div class="light-contain">
+                <div id="close"><h2><i class="fa fa-times" aria-hidden="true"></i></h2></div>
+                <h2 class="riverTitle">No Data Available At This Time</h2>
+                <div class="chart col-8">
+                    <div class="progress-wrap">
+                        <div class="col-xs-6 col-md-4">
+                            <div class="progress vertical">
+                                <div class="progress-bar proBar-0" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <p class="progress-text flow-0">N/A cfs</p>
+                                  </div>
+                            </div>
+                            <p class="dateLabel date-0">No Data</p>
+                        </div>
+                        <div class=" col-xs-6 col-md-4">
+                            <div class="progress vertical">
+                                <div class="progress-bar proBar-1" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <p class="progress-text flow-1">N/A cfs</p>
+                                  </div>
+                            </div>
+                            <p class="dateLabel date-1">No Data</p>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                            <div class="progress vertical">
+                                <div class="progress-bar proBar-2" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <p class="progress-text flow-2">N/A cfs</p>
+                                  </div>
+                            </div>
+                            <p class="dateLabel date-2">No Data</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gauge col-4">
+                    <h3>Current Flow:</h3>
+                    <h1 class="currFlow">N/A</h1>
+                    <h3>cfs</h3>
+                </div>
+                 <div style="clear: both;"></div>
+                <% if (user) { %> 
+                    <h1 id="" class="addFavs">Add to Favorites!</h1>
+                <% } else { %>
+                <h1 class="lightLogin">Login To Add to Favorites </h1>
+                <div class='loginWrap'>
+                    <div class = "logInButton">
+                      <a href = "/login">
+                        <p class="nav-text">Login</p>
+                      </a>
+                    </div>
+                    <div class = "signInButton">
+                      <a href= "/signup">
+                        <p class="nav-text">Sign up</p>
+                      </a>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+                <% } %>
+            </div>
+        
+        </div>
+<script src ="js/frontEnd.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeEhJNVidPVfBn1WRHALIczTr2fEQpytQ&callback=gMap.init" async defer></script>

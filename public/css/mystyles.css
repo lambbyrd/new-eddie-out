@@ -7,13 +7,51 @@ html, body{
 }
 
 .navbar-brand{
-    padding: 15px 0 0 40px;
-    font-family: 'Pacifico', cursive;
-    font-size: 2.4em;
+  padding: 15px 0 0 40px;
+  font-family: 'Pacifico', cursive;
+  font-size: 2.4em;
+}
+.navbar-inverse{
+  background-color: rgba(2,35,66,0.9);
+  
 }
 .navbar .navbar-inverse{
   color: #2d2e32;
+  background-color: rgba(2,35,66,0.9);
 }
+.navbar-inverse .navbar-nav>li {
+    color: #9d9d9d;
+}
+
+.eddie-nav{
+  padding-left: 5%;
+  font-size: 1.5em;
+}
+.customDrop{
+  background-color: rgba(2,35,66,0.9);
+}
+.dropdown-menu>li>a{
+  color: #9d9d9d;
+}
+.dropdown-menu {
+  min-width: 300px;
+}
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover{
+  
+  background-color: transparent;
+}
+
+.removeFav {
+  float: right;
+  padding-right: 10px;
+}
+.riverSite {
+  float:left;
+  padding-left: 10px;
+}
+
 
 .profile{
   margin: 0 auto;
@@ -37,7 +75,7 @@ html, body{
 
 .sidebar, .sidebar2{
   overflow: hidden;
-  background: #2d2e32;
+  background-color: rgba(2,35,66,0.9);
   border-right: 1px solid #131418;
   top: 50px;
   color: #9d9d9d;
@@ -311,4 +349,121 @@ a {
 a:hover,
 a:focus{
   text-decoration: none;
+}
+
+/*Light box Waterflow details*/
+
+.lightbox {
+	display: none;
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.7);
+}
+.showLightbox{
+	display: block;
+}
+
+.light-contain{
+	width: 60%;
+	height: 60%;
+	background-color: rgba(2,35,66,0.9);
+	border-radius: 20px;
+	position: absolute;
+	margin: 0 auto;
+	left: 25%;
+	top: 20%;
+}
+.addFavs {
+  color: #9d9d9d;
+  cursor: pointer;
+  padding: 1em 0 0 0;
+}
+.lightLogin {
+  color: #9d9d9d;
+  cursor: pointer;
+  padding: 1em 0 0 0;
+}
+.loginWrap{
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 2%;
+}
+.light-contain > h2{
+  color: #9d9d9d;
+	text-align: left;
+	font-size: 2em;
+	margin: 0;
+	padding: 0 0 0 1.5em;
+
+}
+.col-8{
+	width:70%;
+	height: 50%;
+	border-right: 1px solid #131418;
+	float: left;
+}
+.col-4{
+	width: 30%;
+	height: 50%;
+	float: left;
+}
+.col-4 > h1{
+  font-size: 10em;
+  color: #9d9d9d;
+}
+.col-4 > h3{
+  color:#46924a;
+}
+.guage > table{
+	margin: 0 auto;
+}
+.details > h4{
+	text-align: left;
+}
+
+#close{
+	height: 4em;
+}
+
+#close > h2{
+	position: absolute;
+	color: #9d9d9d;
+	font-size: 2.5em;
+	right: 1%;
+	top: -3%;
+	cursor: pointer;
+}
+
+/*progress bar*/
+
+.vertical {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+.vertical {
+  box-shadow: inset 0px 4px 6px #ccc;
+}
+.progress-bar {
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+  background-color: #46924a;
+}
+.progress-wrap{
+   margin-top: 20%;
+}
+.progress-text {
+  padding: 10%;
+  font-size: 2em;
+  color: rgba(2,35,66,0.9);
+}
+.dateLabel{
+  color:#9d9d9d;
+  padding-top: 40%;
 }

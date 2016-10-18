@@ -50,12 +50,34 @@ function isLoggedIn(req, res, next) {
 
 router.get('/logout', mainController.userLogout);
 
+//get users data
+
+router.get('/user_data', function(req, res) {
+
+            if (req.user === undefined) {
+                // The user is not logged in
+                res.json({});
+            } else {
+                res.json({
+                    user: req.user
+                });
+            }
+        });
+
 //Browse rivers route
 
 router.get('/browse', mainController.browseRivers);
 
 //get USGS Data
 
-router.get('/usgs', locationController.getUsgsData);
+router.get('/usgs/:site', locationController.getUsgsFlow);
 router.get('/locations', locationController.returnLocations);
+
+//save usgs Favorites
+
+router.post('/favorites/:site',isLoggedIn, mainController.sendToFavs);
+
+//Delete Usgs Favorites
+
+router.put('/deleteFavs/:site', isLoggedIn, mainController.deleteFavs);
 
