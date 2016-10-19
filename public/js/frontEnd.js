@@ -154,6 +154,12 @@ var displayData = {
                 });
             }
         });
+    },
+    
+    displayBrowseData: function(siteName, siteCode){
+        console.log('does this fire');
+        $('.riverList').append('<li id="'+siteCode+'"><a class="riverSite" href="#" onClick="usgs.getFlowData('+siteCode+');">'+siteName+'</li>');
+        
     }
     
 }
@@ -181,9 +187,14 @@ var usgs = {
     },
     
     pushRiverMarkers : function(data){
-       
+        //browse data
+        data.forEach(function(riverLocation, index){
+            displayData.displayBrowseData(riverLocation.name, riverLocation.siteCode);
+        });
+        //gmaps data
         data.forEach(function(riverLocation, index){
             gMap.addRiverTag(riverLocation.lat, riverLocation.long, riverLocation.name, riverLocation.siteCode);
+            
         });
         
     }
@@ -201,7 +212,7 @@ $(function(){
     
     
     usgs.getLocations();
-    
+
     
     //add favorites listener
     

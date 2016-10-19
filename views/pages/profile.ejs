@@ -1,32 +1,40 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        
-    <h1 class="page-header">Profile Page</h1>
-    <div id="messages"></div>
-    <form id ="theForm" class="submitChat" autocomplete = "off">
-      <div class='submitWrap'>
-      	<p>Email: <span><%= user.email %></span></p>
-        <p>Set Your Username:</p>
-        <input class="chatBox" id="chatBox" name="chat" type="text"/>
-        <button type="submit" class ="chatButton"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-      </div>
-    </form>
-</div> 
- 
+
  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <div class="profile-wrap">
-        <ul>
-            <li>Username: </li>
-            <li>Email: <%= user.email %></li>
-            <li class ="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Favorites 
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu customDrop">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>        
+
+                <div class="row">
+                    <div class="col-md-4">
+                    
+                        <h3>User Details</h3>
+                        <br>
+                        <form action ="/updateDetails" method = "post">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="<% if (!user.username){ %> Add Username<%}%><%= user.username %>">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="<% if (!user.email){ %> Add Email<%}%><%= user.email %>">
+                            <label>Short Description</label>
+                            <input type="text" class="form-control" name="shortDescription" placeholder=<% if (!user.description){ %> "Add Description" <%}%> "<%= user.description %>">
+                            <br>
+                            <button type="submit" class="float btn btn-success">Update Details</button>
+                        </form>
+                        <br><br>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group col-md-8">
+                            <h3>Change Your Password</h3>
+                            <br>
+                            <form action ="/updatePass" method = "post">
+                                <label>Enter Old Password</label>
+                                <input type="password" name="oldPass" class="form-control">
+                                <label>Enter New Password</label>
+                                <input type="password" name="newPass" class="form-control">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="newPassConfirm" class="form-control">
+                                <br>
+                                <button type="submit" class="float btn btn-warning">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
  </div>
  <script src ="js/frontEnd.js"></script>

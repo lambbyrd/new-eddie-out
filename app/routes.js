@@ -30,6 +30,7 @@ router.get('/profile',isLoggedIn, mainController.profileInit);
 
 router.post('/newuser', mainController.addNewUser);
 
+
 //User login
 
 router.post('/loginUser', mainController.loginUser);
@@ -80,4 +81,10 @@ router.post('/favorites/:site',isLoggedIn, mainController.sendToFavs);
 //Delete Usgs Favorites
 
 router.put('/deleteFavs/:site', isLoggedIn, mainController.deleteFavs);
+
+//Add username and short description
+
+router.post('/updateDetails', isLoggedIn, mainController.updateDetails);
+
+router.post('/updatePass', isLoggedIn, mainController.updatePass);
 

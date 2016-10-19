@@ -17,14 +17,14 @@ module.exports = function(passport) {
 
 // Local Sign up
     passport.use('local-signup', new LocalStrategy({
-       
+        
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallBack : true 
     },
     
     function(email, password, done) {
-    	
+
         process.nextTick(function() {
 
  
@@ -38,7 +38,7 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, { message: 'That email is already taken!'});
             } else {
-								
+                
                 var newUser      = new User();
                 newUser.email    = email;
                 newUser.password = newUser.generateHash(password);
