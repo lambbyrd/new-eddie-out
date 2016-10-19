@@ -10,6 +10,10 @@ module.exports = router;
 
 //Routes
 
+//populate Database
+
+router.get('/popData', locationController.getUsgsData);
+
 //homepage route
 router.get('/', mainController.displayHome);
 

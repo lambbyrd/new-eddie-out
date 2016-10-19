@@ -4,13 +4,55 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 
 var server = require('../server.js');
-//var Location = require('../models/locations');
+
+var Location = require('../app/models/locations');
 var should = chai.should();
 var app = server.app;
 
 chai.use(chaiHttp);
 
 describe('Eddie out', function() {
+    this.timeout(30000);
+    before(function (done){
+       server.runServer(function (err){
+           if(err){
+              return console.error(err);
+           }
+           done();
+       }); 
+    });
+    // var locations = [];
+    // before(function(done) {
+    //     server.runServer(
+    //     //    function() {
+    //     //     Location.create([
+    //     //         {
+    //     //         name: 'River Location 1',
+    //     //         lat: '-129',
+    //     //         long: '89',
+    //     //         siteCode: '123456'
+    //     //         },
+    //     //         {
+    //     //         name: 'River Location 2',
+    //     //         lat: '-149',
+    //     //         long: '99',
+    //     //         siteCode: '234567'
+    //     //         },
+    //     //         {
+    //     //         name: 'River Location 3',
+    //     //         lat: '-199',
+    //     //         long: '29',
+    //     //         siteCode: '345678'
+    //     //         }], function(err, riverLocations) {
+    //     //                     if(err){
+    //     //                       return console.error(err);
+    //     //                     }
+    //     //                     locations = riverLocations;
+    //     //         done();
+    //     //    });
+    //     });
+    // });
+
  
     it('Get Homepage', function(done) {
         chai.request(app)
@@ -160,17 +202,23 @@ describe('Eddie out', function() {
                 done();
             });
     });
+    
     it('Get all river locations', function(done) {
-        this.timeout(5000);
         chai.request(app)
             .get('/locations')
             .end(function(err, res) {
                 should.equal(err, null);
-                console.log(res.body);
                 res.should.have.status(200);
+                res.body[0].should.be.a('object');
+                res.body[0].should.have.property('_id');
+                res.body[0].should.have.property('lat');
+                res.body[0].should.have.property('long');
+                res.body[0].should.have.property('name');
+                res.body[0].should.have.property('siteCode');
                 done();
             });
     });
+    
     it.skip('Send riverlocation to favorites', function(done) {
         chai.request(app)
             .post('/favorites'+ site)
@@ -207,4 +255,10 @@ describe('Eddie out', function() {
                 done();
             });
     });
+    
+    // after(function(done) {
+    //     Location.remove(function() {
+    //         done();
+    //     });
+    // });
 });

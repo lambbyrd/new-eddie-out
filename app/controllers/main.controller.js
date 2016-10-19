@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var User = require('../models/user-model');
 
+
 module.exports = {
   
   //displays homepage content

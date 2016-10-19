@@ -157,7 +157,7 @@ var displayData = {
     },
     
     displayBrowseData: function(siteName, siteCode){
-        console.log('does this fire');
+      
         $('.riverList').append('<li id="'+siteCode+'"><a class="riverSite" href="#" onClick="usgs.getFlowData('+siteCode+');">'+siteName+'</li>');
         
     }

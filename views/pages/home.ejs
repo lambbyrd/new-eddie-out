@@ -35,14 +35,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="gauge col-4">
+                <div id="" class="gauge col-4">
                     <h3>Current Flow:</h3>
                     <h1 class="currFlow">N/A</h1>
                     <h3>cfs</h3>
                 </div>
                  <div style="clear: both;"></div>
-                <% if (user) { %> 
-                    <h1 id="" class="addFavs">Add to Favorites!</h1>
+                 <% if (user && jQuery.inArray(siteCode, user.favorites) == -1){%>
+                     <h1 id="" class="addFavs">Add to Favorites!</h1>
+                <% } else if (user && jQuery.inArray(siteCode, user.favorites) >= 0) { %> 
+                    <h1 class="lightLogin">Already Added to Favorites..</h1>
                 <% } else { %>
                 <h1 class="lightLogin">Login To Add to Favorites </h1>
                 <div class='loginWrap'>
@@ -62,5 +64,6 @@
             </div>
         
         </div>
+
 <script src ="js/frontEnd.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeEhJNVidPVfBn1WRHALIczTr2fEQpytQ&callback=gMap.init" async defer></script>

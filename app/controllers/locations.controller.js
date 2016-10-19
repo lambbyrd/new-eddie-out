@@ -61,9 +61,9 @@ module.exports = {
     },
 	
 	getUsgsData: (req, res) => {
-	    
-	    var getLocations = getFromUSGS();
-		
+	    var url = 'http://waterservices.usgs.gov/nwis/dv/?format=json&stateCd=ca&parameterCd=00060&siteType=ST&siteStatus=active&altMin=500'
+	    var getLocations = getFromUSGS(url);
+		console.log('getusgs firing');
 		getLocations.on('end', function(locations){
 		    
 		    

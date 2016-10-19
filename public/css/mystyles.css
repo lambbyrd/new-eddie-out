@@ -141,7 +141,7 @@ body, input, button {
 .login .heading h2 {
   font-size: 3em;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
+   color: rgba(2,35,66,0.9);
   display: inline-block;
   padding-bottom: 5px;
   text-shadow: 1px 1px 3px #23203b;
@@ -160,7 +160,7 @@ body, input, button {
 }
 .login form .input-group span i {
   font-size: 1.5em;
-  color: rgba(255, 255, 255, 0.2);
+   color: rgba(2,35,66,0.9);
 }
 .login form input.form-control {
   display: block;
@@ -175,7 +175,25 @@ body, input, button {
   font-size: 1.6em;
   width: 100%;
   background: transparent;
-  color: #c2b8b1;
+  color: #022342;
+}
+input[type="text"].form-control::-webkit-input-placeholder,
+input[type="password"].form-control::-webkit-input-placeholder{
+  color: #022342;
+}
+input[type="text"].form-control::-moz-placeholder,
+input[type="password"].form-control::-moz-placeholder{
+  color: #022342;
+}
+input[type="text"].form-control:-ms-input-placeholder,
+input[type="password"].form-control:-ms-input-placeholder{
+  color: #022342;
+}
+input[type="text"].form-control:-moz-placeholder,
+input[type="password"].form-control:-moz-placeholder{
+  
+  color: #022342;
+  
 }
 .login form input.form-control:focus {
   border: none;
