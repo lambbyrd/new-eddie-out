@@ -18,21 +18,21 @@ describe('Eddie-out all user functions', function(){
             User.create([
                 {email: 'chris@chris.com',
                  username: 'Chris',
-                 password: '12345',
+                 password: '$2a$08$OXkCdXiDs56JpYKdGhqUc.oghOniFC2lh51hEpcdVSjEBFvctqVpS',
                  description: 'Another description',
-                 favorites: []
+                 favorites: ['12345','6785','78654']
                 },
-                {email: 'new@new.com',
+                {email: 'new@grace.com',
                  username: 'newNew',
-                 password: '12345',
+                 password: '$2a$08$OXkCdXiDs56JpYKdGhqUc.oghOniFC2lh51hEpcdVSjEBFvctqVpS',
                  description: 'Sweet little Description',
-                 favorites: []
+                 favorites: ['12345','6785','78654']
                 },
-                {email: 'chris@new.com',
+                {email: 'chris@jeff.com',
                  username: 'kris',
-                 password: '12345',
+                 password: '$2a$08$OXkCdXiDs56JpYKdGhqUc.oghOniFC2lh51hEpcdVSjEBFvctqVpS',
                  description: 'something',
-                 favorites: []
+                 favorites: ['12345','6785','78654']
                 },], function(err) {
                             if(err){
                                return console.error(err);
@@ -43,93 +43,148 @@ describe('Eddie-out all user functions', function(){
         }); 
     });
     
-    it.skip('Profile', function(done) {
-        chai.request(app)
-            .get('/profile')
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.redirects[0].should.be.empty;
-                res.should.have.status(200);
-                done();
-            });
-    });
     
-    it.skip('Post New User with data', function(done) {
-        // if success redirect /profile failure redirect /signup
-        // test failure message
+    it('Post New User with data', function(done) {
         chai.request(app)
             .post('/newuser')
+            .send({email: 'chris@gmail.com',
+                 password: '12345'})
             .end(function(err, res) {
-                
+                should.equal(err, null);
                 res.should.have.status(200);
+                res.redirects[0].should.not.be.empty;
+                res.redirects[0].should.have.string('profile');
+
                 done();
             });
     });
     
-    it.skip('Login User with data', function(done) {
-        // success redirect /profile failure redirect /login
-        chai.request(app)
-            .post('/loginuser')
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
+    it('login user and test profile page', function(done){
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.get('/profile')
+                          .then(function(res2){
+                              res2.should.have.status(200);
+                              res2.redirects.should.be.empty;
+                              done();
+             });
+        });
+        
+    });
+    
+    
+    it('Get User Data logged in', function(done) {
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.get('/user_data')
+                          .then(function(res2){
+                              res2.should.have.status(200);
+                              res2.body.user.username.should.be.a('string');
+                              res2.body.user.username.should.equal('Chris');
+                              res2.body.user.email.should.equal('chris@chris.com');
+                              done();
+                        });
             });
     });
     
-    it.skip('Get User Data logged in', function(done) {
-        chai.request(app)
-            .get('/user_data')
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
+    it('Send riverlocation to favorites', function(done) {
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.post('/favorites/123456')
+                          .then(function(res2){
+                              agent.get('/user_data')
+                                  .then(function(res3){
+                                      res3.should.have.status(200);
+                                      res3.body.user.username.should.be.a('string');
+                                      res3.body.user.username.should.equal('Chris');
+                                      res3.body.user.email.should.equal('chris@chris.com');
+                                      res3.body.user.favorites[3].should.be.a('string');
+                                      res3.body.user.favorites[3].should.equal('123456');
+                                      done();
+                                });
+                    });
+            });
+       
+    });
+    
+    it('Delete user favorites location', function(done) {
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.put('/deleteFavs/12345')
+                          .then(function(res2){
+                              agent.get('/user_data')
+                                  .then(function(res3){
+                                      res3.should.have.status(200);
+                                      res3.body.user.username.should.be.a('string');
+                                      res3.body.user.username.should.equal('Chris');
+                                      res3.body.user.email.should.equal('chris@chris.com');
+                                      res3.body.user.favorites.length.should.equal(3);
+                                      res3.body.user.favorites[0].should.be.a('string');
+                                      res3.body.user.favorites[0].should.not.equal('12345');
+                                      done();
+                                });
+                    });
             });
     });
     
-    it.skip('Send riverlocation to favorites', function(done) {
-        chai.request(app)
-            .post('/favorites'+ site)
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
+    it('Update User Details', function(done) {
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.post('/updateDetails')
+                          .send({username: 'Chris Reeder', shortDescription:'test works'})
+                          .then(function(res2){
+                              agent.get('/user_data')
+                                  .then(function(res3){
+                                      res3.should.have.status(200);
+                                      res3.body.user.username.should.be.a('string');
+                                      res3.body.user.username.should.equal('Chris Reeder');
+                                      res3.body.user.email.should.equal('chris@chris.com');
+                                      res3.body.user.description.should.be.a('string');
+                                      res3.body.user.description.should.equal('test works');
+                                      res3.body.user.favorites.length.should.equal(3);
+                                      res3.body.user.favorites[0].should.be.a('string');
+                                      done();
+                                });
+                    });
             });
+
     });
     
-    it.skip('Delete user favorites location', function(done) {
-        chai.request(app)
-            .put('/deleteFavs' + site)
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
+    it('Update User Password', function(done) {
+        var agent = chai.request.agent(app);
+        agent.post('/loginUser')
+             .send({email: 'chris@chris.com', password: '12345'})
+             .then(function(res){
+                     agent.post('/updatePass')
+                          .send({oldPass: '12345', newPass:'123456', newPassConfirm: '123456'})
+                          .then(function(res2){
+                              agent.get('/user_data')
+                                  .then(function(res3){
+                                      res3.should.have.status(200);
+                                      res3.body.user.username.should.be.a('string');
+                                      res3.body.user.username.should.equal('Chris Reeder');
+                                      res3.body.user.email.should.equal('chris@chris.com');
+                                      res3.body.user.password.should.not.equal('$2a$08$OXkCdXiDs56JpYKdGhqUc.oghOniFC2lh51hEpcdVSjEBFvctqVpS');
+                                      done();
+                                });
+                    });
             });
-    });
-    
-    it.skip('Update User Details', function(done) {
-        chai.request(app)
-            .post('/updateDetails')
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
-            });
-    });
-    
-    it.skip('Update User Password', function(done) {
-        chai.request(app)
-            .post('/updatePass')
-            .end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                done();
-            });
+
     });
     
     //removes user info at end
     after(function(done) {
-        Location.remove(function() {
+        User.remove(function() {
             done();
         });
     });

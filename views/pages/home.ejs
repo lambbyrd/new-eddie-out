@@ -41,10 +41,8 @@
                     <h3>cfs</h3>
                 </div>
                  <div style="clear: both;"></div>
-                 <% if (user && jQuery.inArray(siteCode, user.favorites) == -1){%>
+                 <% if (user){%>
                      <h1 id="" class="addFavs">Add to Favorites!</h1>
-                <% } else if (user && jQuery.inArray(siteCode, user.favorites) >= 0) { %> 
-                    <h1 class="lightLogin">Already Added to Favorites..</h1>
                 <% } else { %>
                 <h1 class="lightLogin">Login To Add to Favorites </h1>
                 <div class='loginWrap'>

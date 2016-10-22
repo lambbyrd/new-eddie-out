@@ -1,4 +1,5 @@
 //new router
+var passport = require('passport');
 const express = require('express'),
   router = express.Router(),
   mainController = require('./controllers/main.controller'),
@@ -28,7 +29,7 @@ router.get('/chat', mainController.chatInit);
 
 //profile page route
 
-router.get('/profile',isLoggedIn, mainController.profileInit);
+router.get('/profile', isLoggedIn, mainController.profileInit);
 
 //newuser signup
 
@@ -42,13 +43,13 @@ router.post('/loginUser', mainController.loginUser);
 //Is User Logged in
 
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
+    if (req.user) {
         return next();
-
+    } else {
     // if they aren't redirect them to the home page
-    res.redirect('/');
+        res.redirect('/login');
+    }
 }
 
 //logout
@@ -80,7 +81,7 @@ router.get('/locations', locationController.returnLocations);
 
 //save usgs Favorites
 
-router.post('/favorites/:site',isLoggedIn, mainController.sendToFavs);
+router.post('/favorites/:site', isLoggedIn, mainController.sendToFavs);
 
 //Delete Usgs Favorites
 
