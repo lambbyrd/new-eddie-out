@@ -489,3 +489,10 @@ a:focus{
 .riverList{
   list-style-type: none;
 }
+.riverList >li>a{
+  color: rgba(2,35,66,0.9);
+  font-size: 2em;
+}
+.riverList >li>a:hover{
+  color: rgba(2,35,66,0.6);
+}
