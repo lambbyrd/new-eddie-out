@@ -33,4 +33,16 @@
     Express
     Node.js
     Mongo DB
+
+## Things to work on
+
+  Here is a list of features I'm still working on:
+  
+    Fully mobile responsive - I have a few screen sizes where the lightbox needs to scale according 
+    to screen size.
     
+    Organize Browse - Right now the browse feature is just a list of river locations in really
+    no order. I would like to organize them to regions of California.
+    
+    Chat Feature - I can't wait to implement this feature. I want there to be a way for boaters to 
+    be able to meet up talk and organize trips together.
