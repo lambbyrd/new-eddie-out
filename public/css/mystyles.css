@@ -387,15 +387,34 @@ a:focus{
 }
 
 .light-contain{
-	width: 60%;
-	height: 60%;
 	background-color: rgba(2,35,66,0.9);
 	border-radius: 20px;
-	position: absolute;
+	position: relative;
 	margin: 0 auto;
-	left: 25%;
-	top: 20%;
 }
+
+@media only screen and (min-width: 330px) {
+      .light-contain {
+          margin: 30px;
+          left: 0%;
+          top: 20%;
+      }
+}
+
+@media only screen and (min-width: 768px) {
+      .light-contain {
+          width: 600px;
+          margin: 30px auto;
+          left: 12%;
+          top: 20%;
+      }
+}
+
+// @media (min-width: 992px)
+// .modal-lg {
+//     width: 900px;
+// }
+
 .addFavs {
   color: #9d9d9d;
   cursor: pointer;
@@ -431,7 +450,7 @@ a:focus{
 	float: left;
 }
 .col-4 > h1{
-  font-size: 10em;
+ // font-size: 10em;
   color: #9d9d9d;
 }
 .col-4 > h3{

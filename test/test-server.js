@@ -33,7 +33,7 @@ describe('Eddie-out all user functions', function(){
                  password: '$2a$08$OXkCdXiDs56JpYKdGhqUc.oghOniFC2lh51hEpcdVSjEBFvctqVpS',
                  description: 'something',
                  favorites: ['12345','6785','78654']
-                },], function(err) {
+                }], function(err) {
                             if(err){
                                return console.error(err);
                             }
@@ -161,7 +161,7 @@ describe('Eddie-out all user functions', function(){
     });
     
     it('Update User Password', function(done) {
-        var agent = chai.request.agent(app);
+       var agent = chai.request.agent(app);
         agent.post('/loginUser')
              .send({email: 'chris@chris.com', password: '12345'})
              .then(function(res){

@@ -4,12 +4,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
-//socket chat
-
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-
 
 var expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
@@ -18,13 +12,6 @@ var session = require('express-session');
 
 
 var configDB = require('./config/database.js');
-
-//var chatServer = http.Server(app);
-//var io = socket_io(chatServer);
-
-//Code for socket io chat room
-
-//var generalRoom = io.of('/general');
 
 
 //static assets
