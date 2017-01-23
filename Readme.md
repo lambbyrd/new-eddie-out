@@ -2,8 +2,8 @@
 
   A quick way to search rivers in California.
 
-  ![Mobile Version](codepressd.github.com/new-eddie-out/public/img/moblie-eddie-out.jpg)
-  ![Desktop Version](codepressd.github.com/new-eddie-out/public/img/desktop-eddie-out.jpg)
+  ![Mobile Version](public/img/moblie-eddie-out.jpg)
+  ![Desktop Version](public/img/desktop-eddie-out.jpg)
 
 ## About
 
@@ -26,10 +26,6 @@
   keep track of a certian river, just click the button that says "Add to favorites".
   
   That's it.
-
-## Screen Shot
-
-![Eddie OUt Screen Shot](https://drive.google.com/file/d/0B7sJXcZQnOH7X3dHeTFDeGdpZUk/view?usp=sharing)
 
 ## Technology Used
 
