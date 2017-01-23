@@ -2,6 +2,9 @@
 
   A quick way to search rivers in California.
 
+  ![Mobile Version](codepressd.github.com/new-eddie-out/public/img/moblie-eddie-out.jpg)
+  ![Desktop Version](codepressd.github.com/new-eddie-out/public/img/desktop-eddie-out.jpg)
+
 ## About
 
   I'm a beginner kayaker and wanted a easy way to track river flows. The most well used river tracking
@@ -13,6 +16,11 @@
 
   It's pretty simple. Just signup so you can save your favorite rivers, so it's easy to track what the 
   river is doing in those areas. 
+
+  Or if you would like I have setup a demo account:
+
+  email: demo@kayaker.com
+  pass: demo
   
   You can either use the browse or map view to get specific information about the river. If you want to
   keep track of a certian river, just click the button that says "Add to favorites".
@@ -21,7 +29,7 @@
 
 ## Screen Shot
 
-[Eddie OUt Screen Shot](https://drive.google.com/file/d/0B7sJXcZQnOH7X3dHeTFDeGdpZUk/view?usp=sharing)
+![Eddie OUt Screen Shot](https://drive.google.com/file/d/0B7sJXcZQnOH7X3dHeTFDeGdpZUk/view?usp=sharing)
 
 ## Technology Used
 
@@ -37,6 +45,8 @@
 ## Things to work on
 
   Here is a list of features I'm still working on:
+
+    Make this app fullstack with a react or angular frontend.
   
     Fully mobile responsive - I have a few screen sizes where the lightbox needs to scale according 
     to screen size.

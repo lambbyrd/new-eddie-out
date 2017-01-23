@@ -8,11 +8,11 @@
                         <br>
                         <form action ="/updateDetails" method = "post">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="<% if (!user.username){ %> Add Username<%}%><%= user.username %>">
+                            <input type="text" class="form-control" name="username" placeholder="<% if (!user.username){ %> Add Username<%}%><%= user.username %>" required>
                             <label>Email</label>
                             <input type="text" class="form-control" name="email" placeholder="<% if (!user.email){ %> Add Email<%}%><%= user.email %>">
                             <label>Short Description</label>
-                            <input type="text" class="form-control" name="shortDescription" placeholder=<% if (!user.description){ %> "Add Description" <%}%> "<%= user.description %>">
+                            <input type="text" class="form-control" name="shortDescription" placeholder="<% if (!user.description){ %> Add Description <%}%> <%= user.description %>" required>
                             <br>
                             <button type="submit" class="float btn btn-success">Update Details</button>
                         </form>
@@ -24,11 +24,11 @@
                             <br>
                             <form action ="/updatePass" method = "post">
                                 <label>Enter Old Password</label>
-                                <input type="password" name="oldPass" class="form-control">
+                                <input type="password" name="oldPass" class="form-control" required>
                                 <label>Enter New Password</label>
-                                <input type="password" name="newPass" class="form-control">
+                                <input type="password" name="newPass" class="form-control" required>
                                 <label>Confirm New Password</label>
-                                <input type="password" name="newPassConfirm" class="form-control">
+                                <input type="password" name="newPassConfirm" class="form-control" required>
                                 <br>
                                 <button type="submit" class="float btn btn-warning">Change Password</button>
                             </form>

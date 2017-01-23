@@ -38,6 +38,7 @@ var gMap = {
         gMap.markers.push(marker);
 
         marker.addListener('click', function(){
+            $('.loader').css("display", "block");
         	var index = gMap.markers.indexOf(this);
         	usgs.getFlowData(this.siteCode);
 
@@ -49,6 +50,7 @@ var displayData = {
     
     addToLightbox : function(array){
         $('.lightbox').addClass('showLightbox');
+        $('.loader').css("display","none");
         var siteName = array.pop();
         var siteNum  = array.shift();
         $('.riverTitle').text(siteName[0]);
