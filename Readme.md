@@ -2,11 +2,9 @@
 
   A quick way to search rivers in California.
 
-Mobile View:
-  ![Mobile Version](public/img/mobile-eddie-out.jpg?raw=true)
 
-Desktop View:
-  ![Desktop Version](public/img/desktop-eddie-out.jpg?raw=true)
+  ![Mobile Version](public/img/eddie-out-screenshots.jpg?raw=true)
+
 
 ## About
 
