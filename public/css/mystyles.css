@@ -345,6 +345,14 @@ input[type="password"].form-control:-moz-placeholder{
   padding-right: 10px;
 }
 
+/* browse area */
+
+.riverList > li {
+  display: block;
+  float: left;
+  clear: left;
+}
+
 /*map area*/
 
 #map-area {
